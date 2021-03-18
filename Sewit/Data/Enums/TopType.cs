@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Data.Enums
 {
-    public class TopType
+    public enum TopType
     {
     }
 }
