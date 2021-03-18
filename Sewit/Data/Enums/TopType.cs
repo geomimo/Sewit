@@ -7,5 +7,6 @@ namespace Sewit.Data.Enums
 {
     public enum TopType
     {
+
     }
 }

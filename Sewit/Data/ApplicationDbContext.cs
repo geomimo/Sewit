@@ -12,5 +12,10 @@ namespace Sewit.Data
             : base(options)
         {
         }
+
+        public DbSet<Dress> Dresses { get; set; }
+        public DbSet<TopComponent> TopComponents { get; set; }
+        public DbSet<SkirtComponent> SkirtComponents { get; set; }
+        public DbSet<SleeveComponent> SleeveComponents { get; set; }
     }
 }
