@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Contracts
 {
-    interface ISleeveComponentRepository : IRepositoryBase<SleeveComponent>
+    public interface ISleeveComponentRepository : IRepositoryBase<SleeveComponent>
     {
     }
 }

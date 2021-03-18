@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Contracts
 {
-    interface ITopComponentRepository : IRepositoryBase<TopComponent>
+    public interface ITopComponentRepository : IRepositoryBase<TopComponent>
     {
     }
 }

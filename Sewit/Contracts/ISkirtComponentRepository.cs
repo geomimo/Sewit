@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Contracts
 {
-    interface ISkirtComponentRepository : IRepositoryBase<SkirtComponent>
+    public interface ISkirtComponentRepository : IRepositoryBase<SkirtComponent>
     {
     }
 }

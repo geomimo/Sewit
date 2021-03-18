@@ -7,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sewit.Contracts;
 using Sewit.Data;
+using Sewit.Mappings;
+using Sewit.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +38,14 @@ namespace Sewit
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IDressRepository, DressRepository>();
+            services.AddScoped<ISleeveComponentRepository, SleeveComponentRepository>();
+            services.AddScoped<ISkirtComponentRepository, SkirtComponentRepository>();
+            services.AddScoped<ITopComponentRepository, TopComponentRepository>();
+
+            services.AddAutoMapper(typeof(Maps));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

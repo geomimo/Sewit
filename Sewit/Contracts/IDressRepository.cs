@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Contracts
 {
-    interface IDressRepository : IRepositoryBase<Dress>
+    public interface IDressRepository : IRepositoryBase<Dress>
     {
     }
 }

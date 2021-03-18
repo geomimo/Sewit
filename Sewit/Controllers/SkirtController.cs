@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
-    public class SleeveController : Controller
+    public class SkirtController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly ISleeveComponentRepository _sleeveComponentRepository;
+        private readonly ISkirtComponentRepository _skirtComponentRepository;
 
-        public SleeveController(IMapper mapper, ISleeveComponentRepository sleeveComponentRepository)
+        public SkirtController(IMapper mapper, ISkirtComponentRepository skirtComponentRepository)
         {
             _mapper = mapper;
-            _sleeveComponentRepository = sleeveComponentRepository;
+            _skirtComponentRepository = skirtComponentRepository;
         }
 
         public IActionResult Index()
         {
-            var sleeves = _sleeveComponentRepository.FindAll();
-            var model = _mapper.Map<List<SleeveComponentVM>>(sleeves);
+            var skirts = _skirtComponentRepository.FindAll();
+            var model = _mapper.Map<List<SleeveComponentVM>>(skirts);
             return View(model);
         }
 
@@ -35,45 +35,45 @@ namespace Sewit.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(SleeveComponentCreateVM model)
+        public IActionResult Create(SkirtComponentCreateVM model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var sleeve = _mapper.Map<SleeveComponent>(model);
-            _sleeveComponentRepository.Create(sleeve);
+            var skirt = _mapper.Map<SkirtComponent>(model);
+            _skirtComponentRepository.Create(skirt);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)
         {
-            var sleeve = _sleeveComponentRepository.FindById(id);
-            var model = _mapper.Map<SleeveComponentEditVM>(sleeve);
+            var skirt = _skirtComponentRepository.FindById(id);
+            var model = _mapper.Map<SkirtComponentEditVM>(skirt);
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(SleeveComponentEditVM model)
+        public IActionResult Edit(SkirtComponentEditVM model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var sleeve = _mapper.Map<SleeveComponent>(model);
-            _sleeveComponentRepository.Update(sleeve);
+            var skirt = _mapper.Map<SkirtComponent>(model);
+            _skirtComponentRepository.Update(skirt);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
         {
-            var sleeve = _sleeveComponentRepository.FindById(id);
-            _sleeveComponentRepository.Delete(sleeve);
+            var skirt = _skirtComponentRepository.FindById(id);
+            _skirtComponentRepository.Delete(skirt);
 
             return RedirectToAction("Index");
         }
