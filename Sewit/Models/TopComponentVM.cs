@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sewit.Models
 {
-    public class TopComponentVM
+    public class TopComponentVM : ComponentVM
     {
-        public int SkirtId { get; set; }
-        public string PhotoPath { get; set; }
-        public string Name { get; set; }
+
     }
 
     public class TopComponentCreateVM

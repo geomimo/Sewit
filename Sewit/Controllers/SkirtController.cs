@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sewit.Contracts;
 using Sewit.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
+    [Authorize]
     public class SkirtController : Controller
     {
         private readonly IMapper _mapper;

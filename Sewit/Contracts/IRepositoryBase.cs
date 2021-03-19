@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Contracts
 {
-    interface IRepositoryBase<T> where T : class
+    public interface IRepositoryBase<T> where T : class
     {
         List<T> FindAll();
         T FindById(int id);

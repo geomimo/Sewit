@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Sewit.Contracts;
+using Sewit.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +11,66 @@ namespace Sewit.Controllers
 {
     public class SewController : Controller
     {
+        private readonly IMapper _mapper;
+        private readonly ITopComponentRepository _topComponentRepository;
+        private readonly ISkirtComponentRepository _skirtComponentRepository;
+        private readonly ISleeveComponentRepository _sleeveComponentRepository;
+        private Dictionary<string, int> _preferences;
+        public SewController(IMapper mapper,
+                             ITopComponentRepository topComponentRepository,
+                             ISkirtComponentRepository skirtComponentRepository,
+                             ISleeveComponentRepository sleeveComponentRepository)
+        {
+            _mapper = mapper;
+            _topComponentRepository = topComponentRepository;
+            _skirtComponentRepository = skirtComponentRepository;
+            _sleeveComponentRepository = sleeveComponentRepository;
+            
+        }
+
         public IActionResult Index()
         {
-            return RedirectToAction(nameof(Top));
+            _preferences = new Dictionary<string, int>();
+            return View();
         }
 
         public IActionResult Top()
         {
-            return View();
+            var tops = _topComponentRepository.FindAll();
+            var model = _mapper.Map<List<TopComponentVM>>(tops);
+            ViewBag.Progress = 25;
+            ViewBag.ProgressLabel = "Top";
+            ViewBag.Next = "Skirt";
+            return View(model);
         }
 
-        public IActionResult Skirt()
+        public IActionResult Skirt(int id)
         {
-            return View();
+            _preferences["Top"] = id;
+            var skirts = _topComponentRepository.FindAll();
+            var model = _mapper.Map<List<SkirtComponentVM>>(skirts);
+            ViewBag.Progress = 50;
+            ViewBag.ProgressLabel = "Skirt";
+            ViewBag.Next = "Sleeve";
+
+            return View(model);
         }
 
-        public IActionResult Sleeve()
+        public IActionResult Sleeve(int id)
         {
-            return View();
+            _preferences["Skrit"] = id;
+            var sleeves = _topComponentRepository.FindAll();
+            var model = _mapper.Map<List<SleeveComponentVM>>(sleeves);
+            ViewBag.Progress = 75;
+            ViewBag.ProgressLabel = "Sleeve";
+            ViewBag.Next = "Recommend";
+
+            return View(model);
         }
 
-        public IActionResult Recommend()
+        public IActionResult Recommend(int id)
         {
+            _preferences["Sleeve"] = id;
             return View();
         }
     }

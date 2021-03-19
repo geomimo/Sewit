@@ -29,6 +29,8 @@ a {
 html {
   font-size: 14px;
 }
+
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -69,3 +71,19 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+html{
+    height: 100%;
+    margin-left:0;
+    margin-right:0;
+}
+
+body {
+    min-height: 100%;
+    
+}
+
+.card-bg {
+    background-color: #f0cedd;
+}
+
