@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sewit.Models
 {
-    public class SleeveComponentVM : ComponentVM
+    public class SleeveComponentVM
     {
-
+        public int SleeveId { get; set; }
+        public string Name { get; set; }
+        public string PhotoPath { get; set; }
     }
 
     public class SleeveComponentCreateVM

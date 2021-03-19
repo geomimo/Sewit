@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
-    [Authorize]
     public class TopController : Controller
     {
         private readonly IMapper _mapper;

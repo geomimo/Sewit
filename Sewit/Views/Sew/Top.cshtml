@@ -1,1 +1,30 @@
-﻿<partial src="_ComponentSelection"></partial>
+﻿@model List<TopComponentVM>
+
+
+<div class="container">
+    <div class="row">
+        <div class="progress">
+            <div>
+                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Top</div>
+            </div>
+        </div>
+    </div>
+    <h2>
+        Choose top component
+    </h2>
+    <div>
+        @foreach (var comp in Model)
+        {
+            <div class="col-3">
+                <div class="card card-bg flex-fill shadow">
+                    <a asp-controller="Sew" asp-action="Recommend" asp-route-id=@comp.TopId>
+                        <img class="card-img-top" src=@comp.PhotoPath />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5>@comp.Name</h5>
+                </div>
+            </div>
+        }
+    </div>
+</div>
