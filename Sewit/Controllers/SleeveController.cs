@@ -16,11 +16,13 @@ namespace Sewit.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ISleeveComponentRepository _sleeveComponentRepository;
+        private readonly IPhotoUploadService _photoUploadService;
 
-        public SleeveController(IMapper mapper, ISleeveComponentRepository sleeveComponentRepository)
+        public SleeveController(IMapper mapper, ISleeveComponentRepository sleeveComponentRepository, IPhotoUploadService photoUploadService)
         {
             _mapper = mapper;
             _sleeveComponentRepository = sleeveComponentRepository;
+            _photoUploadService = photoUploadService;
         }
 
         public IActionResult Index()
@@ -45,6 +47,8 @@ namespace Sewit.Controllers
             }
 
             var sleeve = _mapper.Map<SleeveComponent>(model);
+
+            sleeve.PhotoPath = _photoUploadService.UploadImage(model.Photo);
             _sleeveComponentRepository.Create(sleeve);
 
             return RedirectToAction("Index");

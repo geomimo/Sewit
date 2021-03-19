@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sewit.Contracts;
 using Sewit.Data;
 using Sewit.Models;
+using Sewit.PhotoUploadService.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,14 @@ namespace Sewit.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IDressRepository _dressRepository;
+        private readonly IPhotoUploadService _photoUploadService;
 
-        public DressController(IMapper mapper, IDressRepository dressRepository)
+
+        public DressController(IMapper mapper, IDressRepository dressRepository, IPhotoUploadService photoUploadService)
         {
             _mapper = mapper;
             _dressRepository = dressRepository;
+            _photoUploadService = photoUploadService;
         }
 
         public IActionResult Index()
@@ -45,6 +49,8 @@ namespace Sewit.Controllers
             }
 
             var dress = _mapper.Map<Dress>(model);
+
+            dress.PhotoPath = _photoUploadService.UploadImage(model.Photo);
             _dressRepository.Create(dress);
 
             return RedirectToAction("Index");

@@ -16,11 +16,13 @@ namespace Sewit.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ISkirtComponentRepository _skirtComponentRepository;
+        private readonly IPhotoUploadService _photoUploadService;
 
-        public SkirtController(IMapper mapper, ISkirtComponentRepository skirtComponentRepository)
+        public SkirtController(IMapper mapper, ISkirtComponentRepository skirtComponentRepository, IPhotoUploadService photoUploadService)
         {
             _mapper = mapper;
             _skirtComponentRepository = skirtComponentRepository;
+            _photoUploadService = photoUploadService;
         }
 
         public IActionResult Index()
@@ -45,6 +47,8 @@ namespace Sewit.Controllers
             }
 
             var skirt = _mapper.Map<SkirtComponent>(model);
+
+            skirt.PhotoPath = _photoUploadService.UploadImage(model.Photo);
             _skirtComponentRepository.Create(skirt);
 
             return RedirectToAction("Index");
