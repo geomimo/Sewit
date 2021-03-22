@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sewit.Data;
 
 namespace Sewit.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210322173231_AddModels_v1")]
+    partial class AddModels_v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,7 +223,7 @@ namespace Sewit.Data.Migrations
 
             modelBuilder.Entity("Sewit.Data.Dress", b =>
                 {
-                    b.Property<int>("DressId")
+                    b.Property<int>("ClothId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -238,7 +240,7 @@ namespace Sewit.Data.Migrations
                     b.Property<int>("TopId")
                         .HasColumnType("int");
 
-                    b.HasKey("DressId");
+                    b.HasKey("ClothId");
 
                     b.HasIndex("SkirtId");
 
@@ -269,7 +271,7 @@ namespace Sewit.Data.Migrations
 
             modelBuilder.Entity("Sewit.Data.SleeveComponent", b =>
                 {
-                    b.Property<int>("SleeveId")
+                    b.Property<int>("SkirtId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -280,14 +282,14 @@ namespace Sewit.Data.Migrations
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SleeveId");
+                    b.HasKey("SkirtId");
 
                     b.ToTable("SleeveComponents");
                 });
 
             modelBuilder.Entity("Sewit.Data.TopComponent", b =>
                 {
-                    b.Property<int>("TopId")
+                    b.Property<int>("SkirtId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -298,7 +300,7 @@ namespace Sewit.Data.Migrations
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TopId");
+                    b.HasKey("SkirtId");
 
                     b.ToTable("TopComponents");
                 });

@@ -38,6 +38,11 @@ namespace Sewit.Repository
             return _db.TopComponents.Find(id);
         }
 
+        public TopComponent FindByName(string name)
+        {
+            return _db.TopComponents.Where(t => t.Name == name).FirstOrDefault();
+        }
+
         public bool Save()
         {
             return _db.SaveChanges() > 0;

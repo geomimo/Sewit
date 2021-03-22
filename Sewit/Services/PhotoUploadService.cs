@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Sewit.PhotoUploadService.Interfaces;
+using Sewit.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +20,7 @@ namespace Sewit.Services
 
         public string UploadImage(IFormFile file)
         {
-            string toFolder = Path.Combine(_hostingEnvironment.WebRootPath, "posters");
+            string toFolder = Path.Combine(_hostingEnvironment.WebRootPath, "photos");
             string uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
             string filePath = Path.Combine(toFolder, uniqueFileName);
             file.CopyTo(new FileStream(filePath, FileMode.Create));

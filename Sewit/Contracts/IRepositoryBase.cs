@@ -9,6 +9,7 @@ namespace Sewit.Contracts
     {
         List<T> FindAll();
         T FindById(int id);
+        T FindByName(string name);
         bool Create(T entity);
         bool Update(T entity);
         bool Delete(T entity);

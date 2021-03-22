@@ -10,7 +10,6 @@ namespace Sewit.Models
     public class DressVM
     {
         public int ClothId { get; set; }
-        public string Description { get; set; }
         public string PhotoPath { get; set; }
         public TopComponentVM Top { get; set; }
         public SkirtComponentVM Skirt { get; set; }
@@ -19,8 +18,6 @@ namespace Sewit.Models
 
     public class DressCreateVM
     {
-        [Required]
-        public string Description { get; set; }
 
         [Required]
         public IFormFile Photo { get; set; }
@@ -38,7 +35,6 @@ namespace Sewit.Models
     public class DressEditVM
     {
         public int ClothId { get; set; }
-        public string Description { get; set; }
         public string PhotoPath { get; set; }
         public IFormFile Photo { get; set; }
         public TopComponentVM Top { get; set; }

@@ -9,7 +9,7 @@ namespace Sewit.Data
     public class TopComponent
     {
         [Key]
-        public int SkirtId { get; set; }
+        public int TopId { get; set; }
         public string PhotoPath { get; set; }
         public string Name { get; set; }
     }

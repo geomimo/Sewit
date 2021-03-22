@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sewit.PhotoUploadService.Interfaces
+namespace Sewit.Services.Interfaces
 {
     public interface IPhotoUploadService
     {

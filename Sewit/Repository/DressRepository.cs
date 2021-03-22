@@ -38,6 +38,11 @@ namespace Sewit.Repository
             return _db.Dresses.Find(id);
         }
 
+        public Dress FindByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Save()
         {
             return _db.SaveChanges() > 0;

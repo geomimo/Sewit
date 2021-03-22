@@ -10,8 +10,7 @@ namespace Sewit.Data
     public class Dress
     {
         [Key]
-        public int ClothId { get; set; }
-        public string Description { get; set; }
+        public int DressId { get; set; }
         public string PhotoPath { get; set; }
 
         [ForeignKey("TopId")]

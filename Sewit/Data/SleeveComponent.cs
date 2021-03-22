@@ -9,7 +9,7 @@ namespace Sewit.Data
     public class SleeveComponent
     {
         [Key]
-        public int SkirtId { get; set; }
+        public int SleeveId { get; set; }
         public string PhotoPath { get; set; }
         public string Name { get; set; }
     }

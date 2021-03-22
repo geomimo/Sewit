@@ -38,6 +38,11 @@ namespace Sewit.Repository
             return _db.SleeveComponents.Find(id);
         }
 
+        public SleeveComponent FindByName(string name)
+        {
+            return _db.SleeveComponents.Where(s => s.Name == name).FirstOrDefault();
+        }
+
         public bool Save()
         {
             return _db.SaveChanges() > 0;

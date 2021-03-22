@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sewit.Contracts;
 using Sewit.Data;
 using Sewit.Models;
-using Sewit.PhotoUploadService.Interfaces;
+using Sewit.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +73,8 @@ namespace Sewit.Controllers
             }
 
             var dress = _mapper.Map<Dress>(model);
+
+            
             _dressRepository.Update(dress);
 
             return RedirectToAction("Index");

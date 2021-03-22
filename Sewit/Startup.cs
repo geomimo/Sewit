@@ -10,11 +10,13 @@ using Microsoft.Extensions.Hosting;
 using Sewit.Contracts;
 using Sewit.Data;
 using Sewit.Mappings;
+using Sewit.Services.Interfaces;
 using Sewit.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sewit.Services;
 
 namespace Sewit
 {
@@ -43,6 +45,7 @@ namespace Sewit
             services.AddScoped<ISleeveComponentRepository, SleeveComponentRepository>();
             services.AddScoped<ISkirtComponentRepository, SkirtComponentRepository>();
             services.AddScoped<ITopComponentRepository, TopComponentRepository>();
+            services.AddScoped<IPhotoUploadService, PhotoUploadService>();
 
             services.AddAutoMapper(typeof(Maps));
 
