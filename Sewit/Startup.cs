@@ -46,13 +46,21 @@ namespace Sewit
             services.AddScoped<ISkirtComponentRepository, SkirtComponentRepository>();
             services.AddScoped<ITopComponentRepository, TopComponentRepository>();
             services.AddScoped<IPhotoUploadService, PhotoUploadService>();
+            services.AddScoped<IInitRepository, InitRepository>();
 
             services.AddAutoMapper(typeof(Maps));
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+                              IWebHostEnvironment env,
+                              UserManager<IdentityUser> userManager,
+                              ITopComponentRepository topComponentRepository,
+                              ISkirtComponentRepository skirtComponentRepository,
+                              ISleeveComponentRepository sleeveComponentRepository,
+                              IDressRepository dressRepository,
+                              IInitRepository initRepository)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +80,11 @@ namespace Sewit
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            
+            SeedData.Seed(userManager, topComponentRepository, skirtComponentRepository, sleeveComponentRepository, dressRepository, initRepository);
+                
+            
 
             app.UseEndpoints(endpoints =>
             {

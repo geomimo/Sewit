@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Sewit.Contracts;
 using Sewit.Data;
+using Sewit.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,14 +16,26 @@ namespace Sewit
                                 ITopComponentRepository topComponentRepository,
                                 ISkirtComponentRepository skirtComponentRepository,
                                 ISleeveComponentRepository sleeveComponentRepository, 
-                                IDressRepository dressRepository)
+                                IDressRepository dressRepository,
+                                IInitRepository initRepository)
         {
+            var alreadyInit = SeedInit(initRepository);
+            if (alreadyInit)
+            {
+                return;
+            }
             SeedAdmin(userManager);
             SeedTops(topComponentRepository);
             SeedSkirts(skirtComponentRepository);
             SeedSleeves(sleeveComponentRepository);
             SeedDresses(dressRepository, topComponentRepository, skirtComponentRepository, sleeveComponentRepository);
         }
+
+        private static bool SeedInit(IInitRepository initRepository)
+        {
+            return initRepository.IsInit();
+        }
+
 
         private static void SeedAdmin(UserManager<IdentityUser> userManager)
         {

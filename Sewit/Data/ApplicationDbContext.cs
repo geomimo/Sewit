@@ -17,5 +17,6 @@ namespace Sewit.Data
         public DbSet<TopComponent> TopComponents { get; set; }
         public DbSet<SkirtComponent> SkirtComponents { get; set; }
         public DbSet<SleeveComponent> SleeveComponents { get; set; }
+        public DbSet<Init> Init { get; set; }
     }
 }
