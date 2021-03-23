@@ -12,19 +12,19 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
-    [Authorize]
     public class DressController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IDressRepository _dressRepository;
         private readonly IPhotoUploadService _photoUploadService;
+        private readonly IRecommendationService _recommendationService;
 
-
-        public DressController(IMapper mapper, IDressRepository dressRepository, IPhotoUploadService photoUploadService)
+        public DressController(IMapper mapper, IDressRepository dressRepository, IPhotoUploadService photoUploadService, IRecommendationService recommendationService)
         {
             _mapper = mapper;
             _dressRepository = dressRepository;
             _photoUploadService = photoUploadService;
+            _recommendationService = recommendationService;
         }
 
         public IActionResult Index()
@@ -80,9 +80,21 @@ namespace Sewit.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Detail(int id)
+        public IActionResult Details(int id)
         {
             var dress = _dressRepository.FindById(id);
+
+            var categories = new Dictionary<string, int>()
+            {
+                { "Top", dress.TopId },
+                { "Skirt", dress.SkirtId },
+                { "Sleeve", dress.SleeveId }
+            };
+
+            var recommendations = _recommendationService.RecommnedDresses(categories).Where(d=>d.DressId != dress.DressId).Take(4).ToList();
+
+            ViewBag.Recommendations = _mapper.Map<List<DressVM>>(recommendations);
+
             var model = _mapper.Map<DressVM>(dress);
             return View(model);
         }

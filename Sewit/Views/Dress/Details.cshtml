@@ -1,0 +1,63 @@
+﻿@model DressVM
+@{
+    List<DressVM> recommendations = ViewBag.Recommendations;
+}
+<div class="container">
+    <h1>Details</h1>
+
+    <div class="row mt-3">
+        <div class="col-5">
+            <img src=~/@Model.PhotoPath class="details-img" />
+        </div>
+        <div class="col-3">
+            <div>
+                <h4>Components</h4>
+                <h5>Top: @Model.Top.Name</h5>
+                <h5>Skirt: @Model.Skirt.Name</h5>
+                <h5>Sleeve: @Model.Sleeve.Name</h5>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="jumbotron" style="background-color:#f0cedd">
+                <h2>We fit your gorgeous body into every dress!</h2>
+                <h6 class="text-info">Arrange a video call and let us sew your dream. </h6>
+                <form class="mt-3">
+                    <div class="form-group">
+                        <input class="form-control" type="email" placeholder="example@example.com" />
+                        <button id="button" type="button" class="form-control mt-2 bg-info"><span style="color:#f0cedd">Send</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <h2>See also</h2>
+        <div class="row mt-2">
+
+            @foreach (var dress in recommendations)
+            {
+                <div class="col-3">
+                    <div class="card card-bg shadow">
+                        <a asp-controller="Dress" asp-action="Details" asp-route-id=@dress.DressId>
+                            <img class="card-img-top img-recommend" src=~/@dress.PhotoPath />
+                        </a>
+                        <div class="card-body">
+                            <div class="d-block">
+                                <h6 class="d-inline">Top: @dress.Top.Name</h6><br />
+                                <h6 class="d-inline">Skirt: @dress.Skirt.Name</h6><br />
+                                <h6 class="d-inline">Sleeve: @dress.Sleeve.Name</h6><br />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("button").onclick = function () {
+        confirm("Thank you. We will contact with you soon!");
+    }
+
+</script>

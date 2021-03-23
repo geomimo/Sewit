@@ -48,6 +48,11 @@ html {
     object-fit: fill;
 }
 
+.details-img {
+    width: 400px;
+    height: 523px;
+    object-fit: fill;
+}
 
 @media (min-width: 768px) {
     html {

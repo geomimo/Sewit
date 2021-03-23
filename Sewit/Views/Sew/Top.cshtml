@@ -21,10 +21,11 @@
                         <a asp-controller="Sew" asp-action="Skirt" asp-route-id=@comp.TopId>
                             <img class="card-img-top img-choice" src=~/@comp.PhotoPath />
                         </a>
+                        <div class="card-body">
+                            <h5>@comp.Name</h5>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5>@comp.Name</h5>
-                    </div>
+                    
                 </div>
             }
         
