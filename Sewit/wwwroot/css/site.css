@@ -30,9 +30,20 @@ html {
   font-size: 14px;
 }
 
+.img-preview{
+    width: 180px;
+    height: 210px;
+    object-fit: fill;
+}
+
+.img-choice {
+    width: 255px;
+    height: 280px;
+    object-fit: fill;
+}
 
 @media (min-width: 768px) {
-  html {
+    html {
     font-size: 16px;
   }
 }

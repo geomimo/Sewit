@@ -11,6 +11,8 @@ namespace Sewit.Models
     {
         public int TopId { get; set; }
         public string Name { get; set; }
+        
+        [Display(Name = "Photo")]
         public string PhotoPath { get; set; }
     }
 

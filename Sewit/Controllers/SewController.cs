@@ -15,7 +15,7 @@ namespace Sewit.Controllers
         private readonly ITopComponentRepository _topComponentRepository;
         private readonly ISkirtComponentRepository _skirtComponentRepository;
         private readonly ISleeveComponentRepository _sleeveComponentRepository;
-        private Dictionary<string, int> _preferences;
+        private static Dictionary<string, int> _preferences;
         public SewController(IMapper mapper,
                              ITopComponentRepository topComponentRepository,
                              ISkirtComponentRepository skirtComponentRepository,
@@ -47,7 +47,7 @@ namespace Sewit.Controllers
         public IActionResult Skirt(int id)
         {
             _preferences["Top"] = id;
-            var skirts = _topComponentRepository.FindAll();
+            var skirts = _skirtComponentRepository.FindAll();
             var model = _mapper.Map<List<SkirtComponentVM>>(skirts);
             ViewBag.Progress = 50;
             ViewBag.ProgressLabel = "Skirt";
@@ -59,7 +59,7 @@ namespace Sewit.Controllers
         public IActionResult Sleeve(int id)
         {
             _preferences["Skrit"] = id;
-            var sleeves = _topComponentRepository.FindAll();
+            var sleeves = _sleeveComponentRepository.FindAll();
             var model = _mapper.Map<List<SleeveComponentVM>>(sleeves);
             ViewBag.Progress = 75;
             ViewBag.ProgressLabel = "Sleeve";

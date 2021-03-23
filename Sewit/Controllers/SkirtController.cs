@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
-    [Authorize]
     public class SkirtController : Controller
     {
         private readonly IMapper _mapper;
@@ -29,7 +28,7 @@ namespace Sewit.Controllers
         public IActionResult Index()
         {
             var skirts = _skirtComponentRepository.FindAll();
-            var model = _mapper.Map<List<SleeveComponentVM>>(skirts);
+            var model = _mapper.Map<List<SkirtComponentVM>>(skirts);
             return View(model);
         }
 

@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
-    [Authorize]
     public class SleeveController : Controller
     {
         private readonly IMapper _mapper;
