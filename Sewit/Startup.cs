@@ -47,6 +47,8 @@ namespace Sewit
             services.AddScoped<ITopComponentRepository, TopComponentRepository>();
             services.AddScoped<IPhotoUploadService, PhotoUploadService>();
             services.AddScoped<IInitRepository, InitRepository>();
+            services.AddScoped<IRecommendationService, RecommendationService>();
+
 
             services.AddAutoMapper(typeof(Maps));
 

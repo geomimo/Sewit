@@ -1,0 +1,35 @@
+﻿@model List<DressVM>
+@{
+    ViewData["Title"] = "Recommend";
+}
+
+
+<div class="container">
+    <h1>Our recommendations</h1>
+    <br />
+    @for (int i = 0; i < 2; i++)
+    {
+        <div class="row my-2">
+            @for (int j = 0; j < 4; j++)
+            {
+                <div class="col-3">
+                    <div class="card card-bg shadow">
+                        <a asp-controller="Dress" asp-action="Detail" asp-route-id=@Model[i*2 + j].DressId>
+                            <img class="card-img-top img-recommend" src=~/@Model[i*2 + j].PhotoPath />
+                        </a>
+                        <div class="card-body">
+                            <div class="d-block">
+                                <h6 class="d-inline">Top: @Model[i * 2 + j].Top.Name</h6><br />
+                                <h6 class="d-inline">Skirt: @Model[i * 2 + j].Skirt.Name</h6><br />
+                                <h6 class="d-inline">Sleeve: @Model[i * 2 + j].Sleeve.Name</h6><br />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    }
+
+</div>
+

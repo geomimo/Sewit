@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Sewit.Contracts;
 using Sewit.Models;
+using Sewit.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +16,22 @@ namespace Sewit.Controllers
         private readonly ITopComponentRepository _topComponentRepository;
         private readonly ISkirtComponentRepository _skirtComponentRepository;
         private readonly ISleeveComponentRepository _sleeveComponentRepository;
+        private readonly IRecommendationService _recommendationService;
         private static Dictionary<string, int> _preferences;
+
+
         public SewController(IMapper mapper,
                              ITopComponentRepository topComponentRepository,
                              ISkirtComponentRepository skirtComponentRepository,
-                             ISleeveComponentRepository sleeveComponentRepository)
+                             ISleeveComponentRepository sleeveComponentRepository,
+                             IRecommendationService recommendationService)
         {
             _mapper = mapper;
             _topComponentRepository = topComponentRepository;
             _skirtComponentRepository = skirtComponentRepository;
             _sleeveComponentRepository = sleeveComponentRepository;
-            
+            _recommendationService = recommendationService;
+
         }
 
         public IActionResult Index()
@@ -58,7 +64,7 @@ namespace Sewit.Controllers
 
         public IActionResult Sleeve(int id)
         {
-            _preferences["Skrit"] = id;
+            _preferences["Skirt"] = id;
             var sleeves = _sleeveComponentRepository.FindAll();
             var model = _mapper.Map<List<SleeveComponentVM>>(sleeves);
             ViewBag.Progress = 75;
@@ -71,7 +77,11 @@ namespace Sewit.Controllers
         public IActionResult Recommend(int id)
         {
             _preferences["Sleeve"] = id;
-            return View();
+
+            var recommendations = _recommendationService.RecommnedDresses(_preferences);
+            var model = _mapper.Map<List<DressVM>>(recommendations);
+
+            return View(model);
         }
     }
 }
