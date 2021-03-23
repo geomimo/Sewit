@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Sewit.Repository
 {
@@ -30,12 +32,12 @@ namespace Sewit.Repository
 
         public List<Dress> FindAll()
         {
-            return _db.Dresses.ToList();
+            return IncludeAll();
         }
 
         public Dress FindById(int id)
         {
-            return _db.Dresses.Find(id);
+            return IncludeAll().Where(d => d.DressId == id).FirstOrDefault();
         }
 
         public Dress FindByName(string name)
@@ -57,7 +59,11 @@ namespace Sewit.Repository
 
         private List<Dress> IncludeAll()
         {
-            throw new NotImplementedException();
+            return _db.Dresses
+                .Include(d => d.Top)
+                .Include(d => d.Skirt)
+                .Include(d => d.Sleeve)
+                .ToList();
         }
     }
 }

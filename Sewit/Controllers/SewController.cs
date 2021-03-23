@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Sewit.Contracts;
+using Sewit.Data;
 using Sewit.Models;
 using Sewit.Services.Interfaces;
 using System;
@@ -13,6 +14,7 @@ namespace Sewit.Controllers
     public class SewController : Controller
     {
         private readonly IMapper _mapper;
+        private readonly IDressRepository _dressRepository;
         private readonly ITopComponentRepository _topComponentRepository;
         private readonly ISkirtComponentRepository _skirtComponentRepository;
         private readonly ISleeveComponentRepository _sleeveComponentRepository;
@@ -21,12 +23,14 @@ namespace Sewit.Controllers
 
 
         public SewController(IMapper mapper,
+                             IDressRepository dressRepository,
                              ITopComponentRepository topComponentRepository,
                              ISkirtComponentRepository skirtComponentRepository,
                              ISleeveComponentRepository sleeveComponentRepository,
                              IRecommendationService recommendationService)
         {
             _mapper = mapper;
+            _dressRepository = dressRepository;
             _topComponentRepository = topComponentRepository;
             _skirtComponentRepository = skirtComponentRepository;
             _sleeveComponentRepository = sleeveComponentRepository;
@@ -37,7 +41,18 @@ namespace Sewit.Controllers
         public IActionResult Index()
         {
             _preferences = new Dictionary<string, int>();
-            return View();
+
+            var allDresses = _dressRepository.FindAll();
+            var ourWork = new List<Dress>();
+            var random = new Random();
+            for(int i = 0; i < 4; i++)
+            {
+                int index = random.Next(allDresses.Count);
+                ourWork.Add(allDresses[index]);
+            }
+
+            var model = _mapper.Map<List<DressVM>>(ourWork);
+            return View(model);
         }
 
         public IActionResult Top()

@@ -80,6 +80,13 @@ namespace Sewit.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Detail(int id)
+        {
+            var dress = _dressRepository.FindById(id);
+            var model = _mapper.Map<DressVM>(dress);
+            return View(model);
+        }
+
         public IActionResult Delete(int id)
         {
             var dress = _dressRepository.FindById(id);
