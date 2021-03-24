@@ -8,6 +8,6 @@ namespace Sewit.Services.Interfaces
 {
     public interface IRecommendationService
     {
-        public List<Dress> RecommnedDresses(Dictionary<string, int> preferences);
+        public List<Dress> RecommnedDresses(Dictionary<string, int> preferences, int dressId = -1);
     }
 }

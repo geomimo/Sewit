@@ -33,7 +33,7 @@ namespace Sewit.Services
             public int Distance { get; set; }
         }
 
-        public List<Dress> RecommnedDresses(Dictionary<string, int> preferences)
+        public List<Dress> RecommnedDresses(Dictionary<string, int> preferences, int dressId = -1)
         {
             var allDressses = _dressRepository.FindAll();
             var allTops = _topComponentRepository.FindAll();
@@ -56,9 +56,32 @@ namespace Sewit.Services
                 distances.Add(new DressDistance() { Dress = dress, Distance = HammingDist(prefString, boolString) });
             }
 
-            distances = distances.OrderBy(d => d.Distance).ToList();
-            return distances.Take(6).Select(d => d.Dress).ToList();
+            if (dressId == -1)
+            {
+                return distances.OrderBy(d => d.Distance).Take(6).Select(d=>d.Dress).ToList();
+            }
 
+            distances = distances.Where(d=>d.Dress.DressId != dressId).OrderBy(d => d.Distance).Take(15).ToList();
+            var random = new Random();
+            var recommendations = new List<Dress>();
+
+            int i = 0;
+            while (true)
+            {
+                var index = random.Next(distances.Count);
+                if (recommendations.Contains(distances[index].Dress))
+                {
+                    continue;
+                }
+                recommendations.Add(distances[index].Dress);
+                i++;
+                if (i == 6)
+                {
+                    break;
+                }
+            }
+
+            return recommendations;
         }
 
        

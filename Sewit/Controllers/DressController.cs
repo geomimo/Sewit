@@ -91,7 +91,7 @@ namespace Sewit.Controllers
                 { "Sleeve", dress.SleeveId }
             };
 
-            var recommendations = _recommendationService.RecommnedDresses(categories).Where(d=>d.DressId != dress.DressId).Take(4).ToList();
+            var recommendations = _recommendationService.RecommnedDresses(categories, id).Where(d=>d.DressId != dress.DressId).Take(4).ToList();
 
             ViewBag.Recommendations = _mapper.Map<List<DressVM>>(recommendations);
 
