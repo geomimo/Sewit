@@ -6,7 +6,7 @@
 
 <div class="container">
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="btn btn-success" asp-action="Create">Create New</a>
     </p>
     <table class="table">
         <thead>
@@ -15,24 +15,43 @@
                 <th>
                     @Html.DisplayNameFor(model => model.PhotoPath)
                 </th>
+                <th>
+                    Components
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
 
-                   
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhotoPath)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
+
+                <td>
+                    <div class="card" style="height: 270px; width: 200px;">
+                        <img src=@item.PhotoPath class="card-img-top img-preview" style="height: 270px; width: 200px; object-fit: fill " />
+                    </div>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            Top: @item.Top.Name
+                        </li>
+                        <li>
+                            Skirt: @item.Skirt.Name
+                        </li>
+                        <li>
+                            Sleeve: @item.Sleeve.Name
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-info" asp-controller="Dress" asp-action="Details" asp-route-id=@item.DressId><i class="fa fa-info"></i> Details</a>
+                        <a class="btn btn-danger" asp-controller="Dress" asp-action="Delete" asp-route-id=@item.DressId><i class="fa fa-trash"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

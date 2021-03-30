@@ -58,7 +58,7 @@ namespace Sewit.Services
 
             if (dressId == -1)
             {
-                return distances.OrderBy(d => d.Distance).Take(6).Select(d=>d.Dress).ToList();
+                return distances.OrderBy(d => d.Distance).Take(8).Select(d=>d.Dress).ToList();
             }
 
             distances = distances.Where(d=>d.Dress.DressId != dressId).OrderBy(d => d.Distance).Take(15).ToList();

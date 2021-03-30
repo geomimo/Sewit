@@ -14,14 +14,14 @@
             {
                 <div class="col-3">
                     <div class="card card-bg shadow">
-                        <a asp-controller="Dress" asp-action="Details" asp-route-id=@Model[i*2 + j].DressId>
+                        <a asp-controller="Dress" asp-action="Details" asp-route-id=@Model[i * 4 + j].DressId>
                             <img class="card-img-top img-recommend" src=~/@Model[i*2 + j].PhotoPath />
                         </a>
                         <div class="card-body">
                             <div class="d-block">
-                                <h6 class="d-inline">Top: @Model[i * 2 + j].Top.Name</h6><br />
-                                <h6 class="d-inline">Skirt: @Model[i * 2 + j].Skirt.Name</h6><br />
-                                <h6 class="d-inline">Sleeve: @Model[i * 2 + j].Sleeve.Name</h6><br />
+                                <h6 class="d-inline">Top: @Model[i * 4 + j].Top.Name</h6><br />
+                                <h6 class="d-inline">Skirt: @Model[i * 4 + j].Skirt.Name</h6><br />
+                                <h6 class="d-inline">Sleeve: @Model[i * 4 + j].Sleeve.Name</h6><br />
                             </div>
                         </div>
                     </div>

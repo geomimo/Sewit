@@ -92,7 +92,7 @@ namespace Sewit
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Sew}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
