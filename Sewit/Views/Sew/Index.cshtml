@@ -2,19 +2,33 @@
 
 
 <div class="h-100">
-    <div class="jumbotron main-jumbotron shadow p-0 mt-3" style="height:450px;" >
+    <div class="jumbotron main-jumbotron p-0 shadow mt-3" style="height:450px;">
         <div class="h-100 py-5" style="background-image:url('/photos/background.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover;">
             <div class="text-center">
                 <h1 class="display-3 font-weight-normal">
                     Create stunning dresses in seconds
                 </h1>
-                <a class="btn btn-info btn-lg mt-5" asp-controller="Sew" asp-action="Top">Get Started</a>
+                <a class="btn btn-info btn-lg mt-5" asp-controller="Design" asp-action="">Get started</a>
 
             </div>
         </div>
     </div>
+    <div class="jumbotron main-jumbotron shadow p-0" style="height:450px;">
+        <div class="h-100 py-5" style="background-image:url('/photos/background2.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="pl-5">
+                            <h3 class="display-4 font-weight-normal">
+                                Let us recommend you some options!
+                            </h3>
+                            <div class="text-center"><a class="btn btn-info btn-lg mt-5" asp-controller="Sew" asp-action="Top">Show me</a></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <h2>Our work</h2>   
+        <h2>Our work</h2>
         <div class="row">
 
 
@@ -33,11 +47,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             }
 
-           
+
         </div>
     </div>
 </div>
