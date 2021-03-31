@@ -24,7 +24,7 @@ namespace Sewit.Repository
 
         public bool Delete(TopComponent entity)
         {
-            _db.TopComponents.Add(entity);
+            _db.TopComponents.Remove(entity);
             return Save();
         }
 

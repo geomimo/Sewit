@@ -16,13 +16,25 @@ namespace Sewit.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IDressRepository _dressRepository;
+        private readonly ITopComponentRepository _topComponentRepository;
         private readonly IPhotoUploadService _photoUploadService;
         private readonly IRecommendationService _recommendationService;
+        private readonly ISleeveComponentRepository _sleeveComponentRepository;
+        private readonly ISkirtComponentRepository _skirtComponentRepository;
 
-        public DressController(IMapper mapper, IDressRepository dressRepository, IPhotoUploadService photoUploadService, IRecommendationService recommendationService)
+        public DressController(IMapper mapper, 
+                               IDressRepository dressRepository,
+                               ITopComponentRepository topComponentRepository,
+                               ISleeveComponentRepository sleeveComponentRepository,
+                               ISkirtComponentRepository skirtComponentRepository,
+                               IPhotoUploadService photoUploadService, 
+                               IRecommendationService recommendationService)
         {
             _mapper = mapper;
             _dressRepository = dressRepository;
+            _topComponentRepository = topComponentRepository;
+            _sleeveComponentRepository = sleeveComponentRepository;
+            _skirtComponentRepository = skirtComponentRepository;
             _photoUploadService = photoUploadService;
             _recommendationService = recommendationService;
         }
@@ -36,6 +48,10 @@ namespace Sewit.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Tops = _topComponentRepository.FindAll();
+            ViewBag.Sleeves = _sleeveComponentRepository.FindAll();
+            ViewBag.Skirts = _skirtComponentRepository.FindAll();
+
             return View();
         }
 

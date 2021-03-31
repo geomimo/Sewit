@@ -25,12 +25,15 @@ namespace Sewit.Models
         public IFormFile Photo { get; set; }
 
         [Required]
+        [Display(Name = "Top")]
         public int TopId { get; set; }
 
         [Required]
+        [Display(Name = "Skirt")]
         public int SkirtId { get; set; }
 
         [Required]
+        [Display(Name = "Sleeve")]
         public int SleeveId { get; set; }
     }
 

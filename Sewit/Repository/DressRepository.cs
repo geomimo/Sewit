@@ -26,7 +26,7 @@ namespace Sewit.Repository
 
         public bool Delete(Dress entity)
         {
-            _db.Dresses.Add(entity);
+            _db.Dresses.Remove(entity);
             return Save();
         }
 

@@ -24,7 +24,7 @@ namespace Sewit.Repository
 
         public bool Delete(SkirtComponent entity)
         {
-            _db.SkirtComponents.Add(entity);
+            _db.SkirtComponents.Remove(entity);
             return Save();
         }
 

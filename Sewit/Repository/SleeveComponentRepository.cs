@@ -24,7 +24,7 @@ namespace Sewit.Repository
 
         public bool Delete(SleeveComponent entity)
         {
-            _db.SleeveComponents.Add(entity);
+            _db.SleeveComponents.Remove(entity);
             return Save();
         }
 

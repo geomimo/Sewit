@@ -1,0 +1,65 @@
+﻿@model Sewit.Models.DressCreateVM
+
+@{
+    ViewData["Title"] = "Create";
+    var availableTops = ViewBag.Tops;
+    var availbleSleeve = ViewBag.Sleeves;
+    var availableSkirts = ViewBag.Skirts;
+}
+<div class="container">
+    <h1>Create</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group form-control-file">
+                    <label asp-for="Photo" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Photo" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Choose Image...</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TopId" class="control-label"></label>
+                    <select asp-for="TopId" class="form-control">
+                        @foreach (var top in availableTops)
+                        {
+                            <option value=@top.TopId>@top.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="TopId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SkirtId" class="control-label"></label>
+                    <select asp-for="SkirtId" class="form-control">
+                        @foreach (var skirt in availableSkirts)
+                        {
+                            <option value=@skirt.SkirtId>@skirt.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SkirtId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SleeveId" class="control-label"></label>
+                    <select asp-for="SleeveId" class="form-control">
+                        @foreach (var sleeve in availbleSleeve)
+                        {
+                            <option value=@sleeve.SleeveId>@sleeve.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SleeveId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</div>
