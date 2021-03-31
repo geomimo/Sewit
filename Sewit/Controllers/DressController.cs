@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sewit.Controllers
 {
+    [Authorize]
     public class DressController : Controller
     {
         private readonly IMapper _mapper;
@@ -39,6 +40,7 @@ namespace Sewit.Controllers
             _recommendationService = recommendationService;
         }
 
+        
         public IActionResult Index()
         {
             var dresses = _dressRepository.FindAll();
@@ -96,6 +98,7 @@ namespace Sewit.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             var dress = _dressRepository.FindById(id);
