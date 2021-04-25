@@ -27,13 +27,25 @@
                                 Dresses
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-controller="Design">Create</a>
-                                <a class="dropdown-item" asp-controller="Sew" asp-action="Top">Recommend</a>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" asp-controller="Design">Create</a>
+                                    <a class="dropdown-item" asp-controller="Sew" asp-action="Top">Recommend</a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-controller="Dress">List</a>
+
+                                }
+
                             </div>
                         </li>
 
                     </ul>
                 </div>
+            
+                <partial name="_LoginPartial.cshtml" />
+            
             </div>
         </nav>
     </header>
