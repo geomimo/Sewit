@@ -45,6 +45,7 @@ namespace Sewit
                 UserName = "admin"
             };
             var result = userManager.CreateAsync(admin, "admin").Result;
+            
         }
 
         private static void SeedTops(ITopComponentRepository topComponentRepository)
