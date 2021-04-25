@@ -46,7 +46,12 @@ namespace Sewit
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services
+                .AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AddPageRoute("/Identity/Account/Login", "/Login");
+                });
 
             services.AddScoped<IDressRepository, DressRepository>();
             services.AddScoped<ISleeveComponentRepository, SleeveComponentRepository>();
@@ -93,8 +98,7 @@ namespace Sewit
             
             SeedData.Seed(userManager, topComponentRepository, skirtComponentRepository, sleeveComponentRepository, dressRepository, initRepository);
                 
-            
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
