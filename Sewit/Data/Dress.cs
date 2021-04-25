@@ -12,6 +12,7 @@ namespace Sewit.Data
         [Key]
         public int DressId { get; set; }
         public string PhotoPath { get; set; }
+        public float Price { get; set; }
 
         [ForeignKey("TopId")]
         public int TopId { get; set; }

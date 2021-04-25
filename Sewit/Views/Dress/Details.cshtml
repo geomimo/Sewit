@@ -12,10 +12,44 @@
         <div class="col-3">
             <div>
                 <h4>Components</h4>
-                <h5>Top: @Model.Top.Name</h5>
-                <h5>Skirt: @Model.Skirt.Name</h5>
-                <h5>Sleeve: @Model.Sleeve.Name</h5>
+                <h6>Top: @Model.Top.Name</h6>
+                <h6>Skirt: @Model.Skirt.Name</h6>
+                <h6>Sleeve: @Model.Sleeve.Name</h6>
             </div>
+            <div>
+                <h4><span>€@Model.Price</span></h4>
+            </div>
+            <hr />
+            <form asp-controller="Order" asp-action="AddItem" method="Post">
+                <div class="">
+                    <label asp-for="SelectedSize" class="control-label"></label><br />
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        @{ bool first = true;}
+                        @foreach (var s in Model.Size)
+                        {
+                            if (first)
+                            {
+                                first = false;
+                                <label class="btn btn-secondary active">
+                                    <input type="radio" asp-for="SelectedSize" value="@s" checked />@s<br />
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="btn btn-secondary">
+                                    <input type="radio" asp-for="SelectedSize" value="@s" />@s<br />
+                                </label>
+                            }
+
+                        }
+                    </div>
+                    <span asp-validation-for="SelectedSize" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group mt-3">
+                    <input type="submit" value="Add to cart" class="btn btn-primary btn-block" />
+                </div>
+            </form>
         </div>
         <div class="col-4">
             <div class="jumbotron" style="background-color:#f0cedd">
@@ -49,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             }
         </div>
@@ -59,5 +93,7 @@
     document.getElementById("button").onclick = function () {
         confirm("Thank you. We will contact with you soon!");
     }
+    $().button('toggle');
+    $().button('dispose');
 
 </script>

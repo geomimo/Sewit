@@ -159,7 +159,7 @@ namespace Sewit
                 while (!parser.EndOfData)
                 {
 
-                    // 0: url, 1: skirt, 2: top, 3: sleeve, 4: path
+                    // 0: url, 1: skirt, 2: top, 3: sleeve, 4: path, 5: price
                     string[] row = parser.ReadFields();
                     if (first)
                     {
@@ -173,7 +173,8 @@ namespace Sewit
                         SkirtId = skirtComponentRepository.FindByName(row[1]).SkirtId,
                         TopId = topComponentRepository.FindByName(row[2]).TopId,
                         SleeveId = sleeveComponentRepository.FindByName(row[3]).SleeveId,
-                        PhotoPath = row[4]                        
+                        PhotoPath = row[4],
+                        Price = float.Parse(row[5])
                     };
 
                     dressRepository.Create(dress);

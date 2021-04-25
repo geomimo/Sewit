@@ -13,6 +13,12 @@ namespace Sewit.Models
 
         [Display(Name = "Photo")]
         public string PhotoPath { get; set; }
+        public string[] Size = new[] { "S", "M", "L" };
+        [Display(Name = "Size")]
+        public string SelectedSize { get; set; }
+        [DataType(dataType: DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
+        public float Price { get; set; }
         public TopComponentVM Top { get; set; }
         public SkirtComponentVM Skirt { get; set; }
         public SleeveComponentVM Sleeve { get; set; }
@@ -23,6 +29,7 @@ namespace Sewit.Models
 
         [Required]
         public IFormFile Photo { get; set; }
+        public float Price { get; set; }
 
         [Required]
         [Display(Name = "Top")]
@@ -42,6 +49,7 @@ namespace Sewit.Models
         public int DressId { get; set; }
         [Display(Name = "Photo")]
         public string PhotoPath { get; set; }
+        public float Price { get; set; }
         public IFormFile Photo { get; set; }
         public TopComponentVM Top { get; set; }
         public SkirtComponentVM Skirt { get; set; }
