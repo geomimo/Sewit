@@ -1,0 +1,59 @@
+﻿@model Sewit.Models.OrderVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h3>Your order</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Dresses
+                </th>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Dresses)
+            {
+                <tr>
+                    <td>
+                        <div class="card" style="height: 270px; width: 200px;">
+                            <img src=~/@item.PhotoPath class="card-img-top img-preview" style="height: 270px; width: 200px; object-fit: fill " />
+                        </div>
+                    </td>
+                    <td>
+                        @item.SelectedSize
+                    </td>
+                    <th>
+                        €@item.Price
+                    </th>
+                    <td>
+                        <a class="btn btn-info" asp-controller="Dress" asp-action="Details" asp-route-id=@item.DressId><i class="fa fa-info"></i> Details</a>
+                        <a class="btn btn-danger" asp-controller="Order" asp-action="RemoveItem" asp-route-id=@item.DressId><i class="fa fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td><span class="font-weight-bolder">Total Price:</span></td>
+                <td>€@Model.TotalPrice</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><a class="btn btn-primary" asp-controller="Sew">Continue purchasing</a></td>
+                <td><a class="btn btn-success" asp-controller="Sew">Complete order</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
