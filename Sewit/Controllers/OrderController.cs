@@ -39,7 +39,14 @@ namespace Sewit.Controllers
             order.TotalPrice = order.Dresses.Sum(d => d.Price);
             return RedirectToAction("Index");
         }
-        
+
+        public IActionResult RemoveItem(int id)
+        {
+            order.Dresses.RemoveAll(d => d.DressId == id);
+            return RedirectToAction("Index");
+
+        }
+
         public IActionResult CompleteOrder()
         {
             order.Dresses.Clear();
