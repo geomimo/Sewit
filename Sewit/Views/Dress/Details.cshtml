@@ -20,37 +20,41 @@
                 <h4><span>€@Model.Price</span></h4>
             </div>
             <hr />
-            <form asp-controller="Order" asp-action="AddItem" method="Post">
-                <div class="">
-                    <label asp-for="SelectedSize" class="control-label"></label><br />
-                    <input type="hidden" asp-for="DressId" value=@Model.DressId>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        @{ bool first = true;}
-                        @foreach (var s in Model.Size)
-                        {
-                            if (first)
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Order" asp-action="AddItem" method="Post">
+                    <div class="">
+                        <label asp-for="SelectedSize" class="control-label"></label><br />
+                        <input type="hidden" asp-for="DressId" value=@Model.DressId>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            @{ bool first = true;}
+                            @foreach (var s in Model.Size)
                             {
-                                first = false;
-                                <label class="btn btn-secondary active">
-                                    <input type="radio" asp-for="SelectedSize" value="@s" checked />@s<br />
-                                </label>
-                            }
-                            else
-                            {
-                                <label class="btn btn-secondary">
-                                    <input type="radio" asp-for="SelectedSize" value="@s" />@s<br />
-                                </label>
-                            }
+                                if (first)
+                                {
+                                    first = false;
+                                    <label class="btn btn-secondary active">
+                                        <input type="radio" asp-for="SelectedSize" value="@s" checked />@s<br />
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" asp-for="SelectedSize" value="@s" />@s<br />
+                                    </label>
+                                }
 
-                        }
+                            }
+                        </div>
+                        <span asp-validation-for="SelectedSize" class="text-danger"></span>
                     </div>
-                    <span asp-validation-for="SelectedSize" class="text-danger"></span>
-                </div>
-                <br />
-                <div class="form-group mt-3">
-                    <input type="submit" value="Add to cart" class="btn btn-primary btn-block" />
-                </div>
-            </form>
+                    <br />
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Add to cart" class="btn btn-primary btn-block" />
+                    </div>
+                </form>
+            }
+
         </div>
         <div class="col-4">
             <div class="jumbotron" style="background-color:#f0cedd">
