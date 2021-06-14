@@ -101,7 +101,7 @@ namespace Sewit.Controllers
         [AllowAnonymous]
         public IActionResult Details(int id)
         {
-            var dress = _dressRepository.FindById(id);
+            var dress = _dressRepository.FindById(id); // Retrieve dress
 
             var categories = new Dictionary<string, int>()
             {
@@ -110,7 +110,11 @@ namespace Sewit.Controllers
                 { "Sleeve", dress.SleeveId }
             };
 
-            var recommendations = _recommendationService.RecommnedDresses(categories, id).Where(d=>d.DressId != dress.DressId).Take(4).ToList();
+            // Get 4 recommendations based on this dress
+            var recommendations = _recommendationService.RecommnedDresses(categories, id)
+                                                        .Where(d=>d.DressId != dress.DressId)
+                                                        .Take(4)
+                                                        .ToList();
 
             ViewBag.Recommendations = _mapper.Map<List<DressVM>>(recommendations);
 

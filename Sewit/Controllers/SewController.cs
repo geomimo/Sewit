@@ -40,9 +40,9 @@ namespace Sewit.Controllers
 
         public IActionResult Index()
         {
-            _preferences = new Dictionary<string, int>();
+            _preferences = new Dictionary<string, int>(); // Initialize the preferences of the user
 
-            var allDresses = _dressRepository.FindAll();
+            var allDresses = _dressRepository.FindAll(); // Get 4 random dresses for the 'Our work' section
             var ourWork = new List<Dress>();
             var random = new Random();
             for(int i = 0; i < 4; i++)
@@ -57,7 +57,7 @@ namespace Sewit.Controllers
 
         public IActionResult Top()
         {
-            var tops = _topComponentRepository.FindAll();
+            var tops = _topComponentRepository.FindAll(); // Get all top designs 
             var model = _mapper.Map<List<TopComponentVM>>(tops);
             ViewBag.Progress = 25;
             ViewBag.ProgressLabel = "Top";
@@ -67,8 +67,8 @@ namespace Sewit.Controllers
 
         public IActionResult Skirt(int id)
         {
-            _preferences["Top"] = id;
-            var skirts = _skirtComponentRepository.FindAll();
+            _preferences["Top"] = id; // Add to preferences the top choice of the user
+            var skirts = _skirtComponentRepository.FindAll(); // Get all skirt designs
             var model = _mapper.Map<List<SkirtComponentVM>>(skirts);
             ViewBag.Progress = 50;
             ViewBag.ProgressLabel = "Skirt";
@@ -79,8 +79,8 @@ namespace Sewit.Controllers
 
         public IActionResult Sleeve(int id)
         {
-            _preferences["Skirt"] = id;
-            var sleeves = _sleeveComponentRepository.FindAll();
+            _preferences["Skirt"] = id; // Add to preferences the skirt choice of the user
+            var sleeves = _sleeveComponentRepository.FindAll(); // Get all sleeve designs
             var model = _mapper.Map<List<SleeveComponentVM>>(sleeves);
             ViewBag.Progress = 75;
             ViewBag.ProgressLabel = "Sleeve";
@@ -91,12 +91,13 @@ namespace Sewit.Controllers
 
         public IActionResult Recommend(int id)
         {
-            _preferences["Sleeve"] = id;
+            _preferences["Sleeve"] = id; // Add to preferences the sleeve choice of the user
 
-            var recommendations = _recommendationService.RecommnedDresses(_preferences);
+            // Get the recommendations based on preferences
+            var recommendations = _recommendationService.RecommnedDresses(_preferences); 
             var model = _mapper.Map<List<DressVM>>(recommendations);
 
-            return View(model);
+            return View(model); // Display preferences
         }
     }
 }

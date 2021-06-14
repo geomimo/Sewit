@@ -35,8 +35,8 @@ namespace Sewit.Controllers
             var size = dress.SelectedSize;
             dress = _mapper.Map<DressVM>(_dressRepository.FindById(dress.DressId));
             dress.SelectedSize = size;
-            order.Dresses.Add(dress);
-            order.TotalPrice = order.Dresses.Sum(d => d.Price);
+            order.Dresses.Add(dress); // Add dress to cart
+            order.TotalPrice = order.Dresses.Sum(d => d.Price); // Calculate total price
             return RedirectToAction("Index");
         }
 
@@ -51,6 +51,7 @@ namespace Sewit.Controllers
         public IActionResult CompleteOrder()
         {
             order.Dresses.Clear();
+            order.TotalPrice = 0;
             return View();
         }
     }
